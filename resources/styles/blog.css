@@ -1,0 +1,217 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow: hidden;
+}
+
+.login-page {
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.card {
+    width: 300px;
+    aspect-ratio: 3 / 4;
+    ;
+    background: var(--color-1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    transform: translate(-100px, 50px);
+    opacity: 0;
+    animation: fade-in-card 1s ease-out 0s 1 normal forwards;
+    justify-content: left;
+    align-items: center;
+    border: 5px solid var(--color-4);
+    position: relative;
+}
+
+.card>*:not(.watermark) {
+    z-index: 1;
+}
+
+.watermark {
+    content: attr(data-card-type);
+    z-index: 0;
+    font-size: 5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateZ(70deg);
+    color: var(--color-4);
+    user-select: none;
+}
+
+.watermark[data-cardType="sign-up"] {
+    width: 300px;
+}
+
+.watermark[data-cardType="log-in"] {
+    width: 250px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--color-3)
+}
+
+input {
+    border-radius: 5px;
+    border: none;
+    padding: 4px;
+    position: relative;
+}
+
+input[type='text'],
+input[type='email'] {
+    outline: none;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+input[type='submit'] {
+    outline: none;
+    position: absolute;
+    width: 80%;
+    font-weight: bold;
+    height: 40px;
+    bottom: 10%;
+    cursor: pointer;
+}
+
+/* input[required]::before {
+    content: '*';
+    color: red;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+} */
+
+input[type="submit"]:active {
+    border: 3px solid #222;
+}
+
+.switch-card-type {
+    position: relative;
+    top: 2px;
+    left: -100px;
+    background-color: transparent;
+    border: 0px solid black;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: fade-in-switch-card-type 1s ease-out 1s 1 normal forwards;
+    color: var(--color-1);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.switch-card-type:hover {
+    text-decoration: underline;
+}
+
+#bird {
+    position: absolute;
+    animation: fade-in-bird 1s ease-out 0s 1 normal forwards;
+    transform: translate(-200px, 400px);
+    opacity: 0;
+    top: 20vh;
+    left: 10vh;
+}
+
+#fox {
+    position: absolute;
+    transform: translate(-200px, -400px);
+    opacity: 0;
+    animation: fade-in-fox 1s ease-out 0s 1 normal forwards;
+    bottom: 20vh;
+    right: 10vh;
+}
+
+@keyframes fade-in-fox {
+    0% {
+        transform: translate(-200px, -400px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-bird {
+    0% {
+        transform: translate(-200px, 400px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-card {
+    0% {
+        transform: translate(-100px, 50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-switch-card-type {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    #fox {
+        bottom: 20px;
+        right: 12%;
+        width: 250px;
+        position: absolute;
+    }
+
+    .card {
+        width: 200px;
+    }
+
+    .watermark[data-cardType="log-in"],
+    .watermark[data-cardType="sign-up"] {
+        font-size: 30px;
+        width: 120px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotateZ(70deg);
+    }
+
+    #bird {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 200px;
+    }
+}
